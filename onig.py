@@ -106,14 +106,21 @@ class OnigErrorInfo(ctypes.Structure):
 
 
 # load the DLL or the shared library
+_libpath = ".%slib" % (os.sep)
 
 if os.name in ("nt", "ce"):
+    _libpath += "\\win32"
     _libname = "onig.dll"
 elif sys.platform == "cygwin":
+    _libpath += "\\win32"
     _libname = "libonig.dll"
+elif sys.platform == "darwin":  # osx
+    _libpath += "/osx_yosemeti"
+    _libname = "libonig.dylib"
 else:
     _libname = "libonig.so"
 
+_libname = "%s%s%s" % (_libpath, os.sep, _libname)
 libonig = ctypes.cdll.LoadLibrary(_libname)
 
 #

@@ -31,6 +31,14 @@
 !.editorconfig
 !.travis.yml
 
+# don't wnat to ignore for lib
+!onig.dll       # win32
+!onig.lib
+!libonig.*
+!libonig.dll    # cygwin
+!libonig.dylib  # os x
+!libonig.so     # linux
+
 # working dirs
 .deps
 .libs
